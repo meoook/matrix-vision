@@ -11,7 +11,7 @@ class CaptureChange:
         # self._resolution = 640, 480
         # self._resolution = 800, 600
         self._resolution = 1280, 720
-        self._matrix = SurfaceConvertor(self._resolution)
+        self._convertor = SurfaceConvertor(self._resolution)
         self._screen = pygame.display.set_mode(self._resolution)
         self._surface = pygame.Surface(self._resolution)
         # self._surface.set_alpha(250)
@@ -21,7 +21,7 @@ class CaptureChange:
     def draw(self):
         self._surface.fill(pygame.Color('black'))
         _pixel_arr: PixelArray = self.__get_pixel_frame()
-        self._matrix.next_frame(_pixel_arr, self._surface)
+        self._convertor.next_frame(_pixel_arr, self._surface)
         self._screen.blit(self._surface, (0, 0))
 
     def __get_pixel_frame(self) -> PixelArray:
